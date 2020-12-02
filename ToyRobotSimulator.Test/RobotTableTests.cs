@@ -12,7 +12,7 @@ namespace ToyRobotSimulator.Test
         {
             RobotTable table = new RobotTable(10, 10);
             Point position = new Point(11, 11);
-            var result = table.IsPositionExist(position);
+            var result = table.IsTablePositionExist(position);
             Assert.IsFalse(result);
         }
 
@@ -21,7 +21,7 @@ namespace ToyRobotSimulator.Test
         {
             RobotTable table = new RobotTable(10, 10);
             Point position = new Point(1, 1);
-            var result = table.IsPositionExist(position);
+            var result = table.IsTablePositionExist(position);
             Assert.IsTrue(result);
         }
     }

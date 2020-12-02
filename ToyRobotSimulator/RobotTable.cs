@@ -36,21 +36,6 @@ namespace ToyRobotSimulator
 
             _size = new Size(width, height);
         }
-		//
-		// Summary:
-		//     Initializes a new instance of the Table from the specified
-		//     System.Drawing.Point structure.
-		//
-		// Parameters:
-		//   point:
-		//     The System.Drawing.Point structure from which to initialize this Table.
-		public RobotTable(Point point)
-		{
-			if (point == null || point.X <= 0 || point.Y <= 0)
-				throw new ArgumentOutOfRangeException("Invalid table size");
-
-			_size = new Size(point.X, point.Y);
-		}
 
 		public RobotTable(Size size)
 		{
@@ -64,19 +49,19 @@ namespace ToyRobotSimulator
 
 		#region Methods
 
-		public bool IsValidTable()
+		public bool IsTableValid()
         {
             return _size != null;
         }
 
-        public bool IsPositionExist(Point position)
+        public bool IsTablePositionExist(Point position)
         {
-            return IsPositionExist(position.X, position.Y);
+            return IsTablePositionExist(position.X, position.Y);
         }
 
-        public bool IsPositionExist(int X, int Y)
+        public bool IsTablePositionExist(int x, int y)
         {
-            return (X <= Size.Width && X >= 0) && (Y <= Size.Height && Y >= 0);
+            return (x <= Size.Width && x >= 0) && (y <= Size.Height && y >= 0);
         }
         #endregion
     }

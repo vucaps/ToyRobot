@@ -4,8 +4,8 @@ using System.Drawing;
 
 namespace ToyRobotSimulator
 {
-    public class Robot
-    {
+    public class Robot 
+	{
         #region Members
 
         private Guid? _id;
@@ -42,22 +42,7 @@ namespace ToyRobotSimulator
 		#endregion
 
 		#region Methods
-		public void SetPosition(Point position)
-        {
-            if (position == null || position.X < 0 || position.Y < 0)
-                throw new ArgumentOutOfRangeException("Invalid table size");
-
-            _position = position;
-        }
-        public void SetPosition(Point position, Direction direction)
-        {
-            if (position == null || position.X < 0 || position.Y < 0)
-                throw new ArgumentOutOfRangeException("Invalid table size");
-
-            _direction = direction;
-            _position = position;
-        }
-
+		       
         public void RotateLeft()
         {
             Rotate(MoveTo.Left);
@@ -77,37 +62,71 @@ namespace ToyRobotSimulator
 
             _currentAngle = (int)_direction;
         }
-        public void Rotate(int angle)
-        {
-            _currentAngle = (angle % TOTAL_ANGLES);
+	               
+		public void Move()
+		{
+			if (_position == null)
+				throw new ArgumentOutOfRangeException("Invalid existing position");
+			
+			switch (_direction)
+			{
+				case Direction.North:
+					_position.Y += 1;
+					break;
+				case Direction.East:
+					_position.X += 1;
+					break;
+				case Direction.South:
+					_position.Y -= 1;
+					break;
+				case Direction.West:
+					_position.X -= 1;
+					break;
+			}			
+		}
 
-            if (_currentAngle < 0)
-                _currentAngle = _currentAngle + TOTAL_ANGLES;
-        }
-        public Point GetNextPosition()
-        {
-            if (_position == null)
-                throw new ArgumentOutOfRangeException("Invalid existing position");
+		public void Hop(Point position)
+		{
+			if (_position == null)
+				throw new ArgumentOutOfRangeException("Invalid existing position");
 
-            Point newPosition = new Point(_position.X, _position.Y);
-            switch (_direction)
-            {
-                case Direction.North:
-                    newPosition.Y = newPosition.Y + 1;
-                    break;
-                case Direction.East:
-                    newPosition.X = newPosition.X + 1;
-                    break;
-                case Direction.South:
-                    newPosition.Y = newPosition.Y - 1;
-                    break;
-                case Direction.West:
-                    newPosition.X = newPosition.X - 1;
-                    break;
-            }
-            return newPosition;
-        }
-        #endregion
+			_position = position;
+		}
 
-    }
+		public void Hop(Point position, Direction direction)
+		{
+			if (position == null || position.X < 0 || position.Y < 0)
+				throw new ArgumentOutOfRangeException("Invalid table size");
+
+			_direction = direction;
+			_position = position;
+		}
+
+		public Point GetNextPosition()
+		{
+			if (_position == null)
+				throw new ArgumentOutOfRangeException("Invalid existing position");
+
+			Point newPosition = new Point(_position.X, _position.Y);
+			switch (_direction)
+			{
+				case Direction.North:
+					newPosition.Y = newPosition.Y + 1;
+					break;
+				case Direction.East:
+					newPosition.X = newPosition.X + 1;
+					break;
+				case Direction.South:
+					newPosition.Y = newPosition.Y - 1;
+					break;
+				case Direction.West:
+					newPosition.X = newPosition.X - 1;
+					break;
+			}
+			return newPosition;
+		}
+
+		#endregion
+
+	}
 }

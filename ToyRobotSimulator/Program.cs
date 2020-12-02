@@ -6,9 +6,8 @@ namespace ToyRobotSimulator
 	{
 		static void Main(string[] args)
 		{
-			Robot robot = new Robot();
-			RobotTable table = new RobotTable(5, 5);
-			Simulator simulator = new Simulator(robot, table);
+			
+			RobotSimulator simulator = new RobotSimulator();
 			Console.WriteLine("Please enter command to continue or enter Exit to quit the program");
 			while (true)
 			{
