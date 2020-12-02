@@ -68,7 +68,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Robot.cs" />
-    <Compile Include="Simulator.cs" />
+    <Compile Include="RobotSimulator.cs" />
     <Compile Include="RobotTable.cs" />
   </ItemGroup>
   <ItemGroup>
