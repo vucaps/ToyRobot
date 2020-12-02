@@ -21,6 +21,9 @@ namespace ToyRobotSimulator
 
 		public string RunCommand(string command)
 		{
+			// remove any extra space in the command
+			command = command.Trim();
+
 			string[] commandParam = command.Split(' ');
 
 			if (string.IsNullOrEmpty(command) || commandParam.Length <= 0)
